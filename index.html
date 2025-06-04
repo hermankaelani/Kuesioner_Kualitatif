@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuesioner RME RSOSR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            line-height: 1.3;
+            font-size: 2rem;
+        }
+
+        h1 .subline {
+            display: block;
+            font-size: 2rem;
+            margin-top: 4px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .wizard {
+            background: #fff;
+            padding: 20px 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .active {
+            display: block;
+        }
+
+        label {
+            margin: 12px 0 6px;
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            height: 100px;
+            /* Perlebar textarea */
+        }
+
+        .buttons {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        input[type="button"],
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
+            background-color: #1e7e34;
+        }
+
+        #thankYouMsg {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* atur jarak tombol */
+        @media (max-width: 600px) {
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .buttons input[type="button"],
+            .buttons input[type="submit"] {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        .spinner {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            h1 .subline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>KUESIONER ANALISIS PELAKSANAAN REKAM MEDIS ELEKTRONIK DENGAN METODE DELONE AND MCLEAN INFORMATION SYSTEM
+        SUCCESS (D&M) <span class="subline">DI RS ORTHOPEDI SIAGA RAYA</span>
+    </h1>
+
+    <form id="kuesionerForm" novalidate>
+        <!-- Step 1 -->
+        <div class="wizard active" id="step1">
+            <h2>Informed Consent</h2>
+            <label for="kode_responden">Email Informan (untuk kode):</label>
+            <input type="email" id="kode_responden" name="kode_responden" placeholder="contoh@domain.com" required />
+
+            <label for="nama_responden">Nama Informan:</label>
+            <input type="text" id="nama_responden" name="nama_responden" required />
+
+            <label>Jenis Kelamin:</label>
+            <div class="gender-choice">
+                <label><input type="radio" name="jenis_kelamin" value="L" required /> Laki-laki</label>
+                <label><input type="radio" name="jenis_kelamin" value="P" required /> Perempuan</label>
+            </div>
+
+            <label for="usia">Usia:</label>
+            <select id="usia" name="usia" required>
+                <option value="" disabled selected>Pilih usia</option>
+                <option>20 - 30 Tahun</option>
+                <option>31-40 Tahun</option>
+                <option>41-50 Tahun</option>
+                <option>> 50 Tahun</option>
+            </select>
+
+            <label for="pendidikan">Pendidikan Terakhir:</label>
+            <select id="pendidikan" name="pendidikan" required>
+                <option value="" disabled selected>Pilih pendidikan terakhir</option>
+                <option>SLTA/Sederajat</option>
+                <option>D3</option>
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+            </select>
+
+            <label for="unit_kerja">Unit Kerja/Jabatan:</label>
+            <select id="unit_kerja" name="unit_kerja" required>
+                <option value="" disabled selected>Pilih unit kerja</option>
+                <option>Dokter</option>
+                <option>Manajemen/Direksi</option>
+                <option>Perawat & Bidan</option>
+                <option>Kasir & TU</option>
+                <option>Rekam Medis</option>
+                <option>Fisioterapi</option>
+                <option>Pendaftaran Rawat Jalan & Admission</option>
+                <option>Rontgen/MRI</option>
+                <option>Farmasi</option>
+                <option>Gizi</option>
+                <option>Laboratorium</option>
+                <option>IT</option>
+            </select>
+
+            <label for="masa_kerja">Masa Kerja:</label>
+            <select id="masa_kerja" name="masa_kerja" required>
+                <option value="" disabled selected>Pilih Masa Kerja</option>
+                <option>0-5 Tahun</option>
+                <option>6-10 Tahun</option>
+                <option>> 10 Tahun</option>
+            </select>
+            <div class="buttons">
+                <input type="button" value="Selanjutnya" onclick="nextStep(1)" />
+            </div>
+        </div>
+
+        <!-- Step 2: Pertanyaan 1-5 -->
+        <div class="wizard" id="step2">
+            <h2>Implementasi dan Evaluasi SPO Rekam Medis Elektronik</h2>
+            <label for="spo_isi">1. Berdasarkan pengalaman Bapak/Ibu, apakah ada Standar Prosedur Operasional (SPO) yang
+                mengatur pelaksanaan Rekam Medis Elektronik di rumah sakit ini? Jika ya, jelaskan isi utama SPO yang
+                anda ketahui:</label>
+            <textarea id="spo_isi" name="spo_isi" required></textarea>
+
+            <label for="pemahaman_spo">2. Menurut Bapak/Ibu, sejauh mana SPO ini dipahami dan diterapkan oleh tenaga
+                medis di RS Orthopedi Siaga Raya? Berikan contoh jika ada kendala:</label>
+            <textarea id="pemahaman_spo" name="pemahaman_spo" required></textarea>
+
+            <label for="regulasi_spo">3. Apakah Bapak/Ibu merasa SPO yang ada sudah sesuai dengan regulasi yang berlaku?
+                Jelaskan alasan Anda:</label>
+            <textarea id="regulasi_spo" name="regulasi_spo" required></textarea>
+
+            <label for="pelaksanaan_rme">4. Apakah pelaksanaan RME saat ini telah sesuai dengan SPO yang berlaku? Jika
+                belum, bagian mana saja yang belum sesuai? Berikan contoh:</label>
+            <textarea id="pelaksanaan_rme" name="pelaksanaan_rme" required></textarea>
+
+            <label for="penyebab_ketidaksesuaian">5. Menurut Bapak/Ibu, apa penyebab dari ketidaksesuaian tersebut?
+                Apakah terkait pelatihan, teknologi, atau faktor lain?</label>
+            <textarea id="penyebab_ketidaksesuaian" name="penyebab_ketidaksesuaian" required></textarea>
+
+            <div class="buttons">
+                <input type="button" value="Sebelumnya" onclick="prevStep(2)" />
+                <input type="button" value="Selanjutnya" onclick="nextStep(2)" />
+            </div>
+        </div>
+
+        <!-- Step 3: Pertanyaan 6-9 -->
+        <div class="wizard" id="step3">
+            <h2>Implementasi dan Evaluasi SPO Rekam Medis Elektronik</h2>
+            <label for="frekuensi_ketidaksesuaian">6. Seberapa sering ketidaksesuaian tersebut terjadi dalam pelaksanaan
+                RME? (Misalnya: harian, mingguan, atau jarang):</label>
+            <textarea id="frekuensi_ketidaksesuaian" name="frekuensi_ketidaksesuaian" required></textarea>
+
+            <label for="dampak_ketidaksesuaian">7. Apakah ketidaksesuaian tersebut berdampak terhadap pelayanan pasien
+                atau pekerjaan Bapak/Ibu? Jelaskan dampaknya dengan contoh:</label>
+            <textarea id="dampak_ketidaksesuaian" name="dampak_ketidaksesuaian" required></textarea>
+
+            <label for="kondisi_spo">8. Menurut Bapak/Ibu, apakah SPO yang digunakan saat ini masih sesuai dengan
+                kondisi pelaksanaan di lapangan? Mengapa?</label>
+            <textarea id="kondisi_spo" name="kondisi_spo" required></textarea>
+
+            <label for="revisi_spo">9. Jika perlu dilakukan revisi, bagian mana dari SPO tersebut yang menurut Bapak/Ibu
+                perlu diperbarui? Berikan usulan perbaikan:</label>
+            <textarea id="revisi_spo" name="revisi_spo" required></textarea>
+
+            <div class="buttons">
+                <input type="button" value="Sebelumnya" onclick="prevStep(3)" />
+                <input type="button" value="Kirim Kuesioner" onclick="submitForm()" />
+            </div>
+        </div>
+
+    </form>
+
+    <div class="spinner" id="spinner"></div>
+    <div id="thankYouMsg">Terima kasih telah mengisi kuesioner!</div>
+
+    <script>
+        // Navigasi langkah berikutnya
+        function nextStep(current) {
+            const currentStep = document.getElementById(`step${current}`);
+            if (!validateStep(currentStep)) return;
+            const nextNum = current + 1;
+            const nextStep = document.getElementById(`step${nextNum}`);
+            if (!nextStep) return;
+            currentStep.classList.remove('active');
+            nextStep.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Navigasi langkah sebelumnya
+        function prevStep(current) {
+            const currentStep = document.getElementById(`step${current}`);
+            const prevNum = current - 1;
+            const prevStep = document.getElementById(`step${prevNum}`);
+            if (!prevStep) return;
+            currentStep.classList.remove('active');
+            prevStep.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Validasi step input required
+        function validateStep(stepEl) {
+            if (!stepEl) return false;
+            const inputs = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
+            for (let input of inputs) {
+                if (!input.value) {
+                    alert('Mohon isi semua pertanyaan pada halaman ini.');
+                    input.focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Proses pengiriman data
+        function submitForm() {
+            const form = document.getElementById('kuesionerForm');
+            const formData = new FormData(form);
+            const spinner = document.getElementById('spinner');
+
+            spinner.style.display = 'block'; // Tampilkan spinner
+
+            fetch('https://script.google.com/macros/s/AKfycbwveiZr6c0h2fb52t9H6ITTbPOTg2EcFJYCP8V5lLe0b88KXc0mKAagkMivEPM1dnA0nA/exec', {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert('Terima kasih telah mengisi kuesioner!');
+                        form.reset();
+                        document.querySelectorAll('.wizard').forEach(el => el.classList.remove('active'));
+                        document.getElementById('step1').classList.add('active');
+                        window.scrollTo(0, 0);
+                    } else {
+                        throw new Error('Response tidak sukses');
+                    }
+                })
+                .catch(error => {
+                    alert('Gagal mengirim data. Coba lagi.');
+                    console.error('Error saat kirim:', error);
+                })
+                .finally(() => {
+                    spinner.style.display = 'none'; // Sembunyikan spinner
+                });
+        }
+    </script>
+</body>
+
+</html>
